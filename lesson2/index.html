@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>angular-bootstrap</title>
+  
+  
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+
+  
+  
+</head>
+
+<body>
+  <body ng-app="myApp" ng-controller="myControl">
+  <div class="container">
+  <h3>Users</h3>
+  <table class="table table-striped">
+    <thead>
+      <td>Edit</td>
+      <td>FirstName</td>
+      <td>LastName</td>
+    </thead>
+    <tbody>
+      <tr ng-repeat="user in users" ng-click="editUser(user.id)">
+        <td>
+          <button class="btn">
+            <span class="glyphicon glyphicon-pencil">&nbsp;Edit</span>
+          </button>
+        </td>
+        <td>{{user.fName}}</td>
+        <td>{{user.lName}}</td>
+      </tr>
+    </tbody>
+   </table>
+  <hr />
+  <button class="btn btn-success" ng-click="editUser('new')">
+    <span class="glyphicon glyphicon-user"></span> Create New User</button>
+  <hr />
+  <h3 ng-hide="edit">Create New User:</h3>
+  <h3 ng-show="edit">Edit User:</h3>
+  <form class="form-horizontal">
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="">First Name:</label>
+      <div class="col-sm-10"><input type="text" ng-disabled="!edit" ng-model="fName" placeholder="First Name" /></div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="">Last Name:</label>
+      <div class="col-sm-10"><input type="text" ng-disabled="!edit" ng-model="lName" placeholder="Last Name" /></div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="">Password:</label>
+      <div class="col-sm-10"><input type="password" ng-model="passw1" placeholder="Password" /></div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="">Repeat:</label>
+      <div class="col-sm-10"><input type="password" placeholder="Repeat Password" ng-model="passw2" /></div>
+    </div>
+    <hr />
+    <button class="btn btn-success" ng-disabled = "error||incomplete">
+      <span class="glyphicon glyphicon-save"></span>Save Changes</button>
+  </form>
+    </div>
+</body>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
+
+    <script src="js/index.js"></script>
+
+</body>
+</html>

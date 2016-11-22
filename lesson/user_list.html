@@ -1,0 +1,21 @@
+<h3>Users</h3>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <td>Edit</td>
+        <td>First Name</td>
+        <td>Last Name</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="user in users">
+        <td>
+            <button class="btn" ng-click="editUser(user.id)">
+            <span class="glyphicon glyphicon-pencil"></span>Edit
+            </button>
+        </td>
+        <td>{{user.fName}}</td>
+        <td>{{user.lName}}</td>
+    </tr>
+    </tbody>
+</table>
