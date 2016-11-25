@@ -4,10 +4,7 @@
 var app = angular.module("myApp",[]);
 
 app.controller("myContrl",function ($scope) {
-    $scope.fName="";
-    $scope.lName="";
-    $scope.passw1 = '';
-    $scope.passw2 = '';
+    $scope.data = {fName:'',lName:'',passw1:'',passw2:''};
 
     $scope.users = [
         {id:1, fName:'Hege',lName:"Pege" },
@@ -26,11 +23,14 @@ app.controller("myContrl",function ($scope) {
         if (id=='new'){
             $scope.edit = true;
             $scope.incomplete = true;
-            $scope.fName = '';
-            $scope.lName = '';
+            $scope.data.fName = '';
+            $scope.data.lName = '';
+            $scope.data.passw1 = '';
+            $scope.data.passw2 = '';
         }else{
             $scope.edit = false;
-            $scope.data={fName : $scope.users[id-1].fName,lName:$scope.users[id-1].lName};
+            $scope.data.fName = $scope.users[id-1].fName;
+            $scope.data.lName = $scope.users[id-1].lName;
         }
     }
 
@@ -48,15 +48,15 @@ app.controller("myContrl",function ($scope) {
     });
 
     $scope.test = function () {
-        if ($scope.passw1 !== $scope.passw2) {
+        if ($scope.data.passw1 !== $scope.data.passw2) {
             $scope.error = true;
         } else {
             $scope.error = false;
         }
         $scope.incomplete = false;
-        if ($scope.edit && (!$scope.fName.length ||
-            !$scope.lName.length ||
-            !$scope.passw1.length || !$scope.passw2.length)) {
+        if ($scope.edit && (!$scope.data.fName.length ||
+            !$scope.data.lName.length ||
+            !$scope.data.passw1.length || !$scope.data.passw2.length)) {
             $scope.incomplete = true;
         }
     }
