@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-app="myApp" ng-controller="SelectController">
+<input type="text" ng-model="isTwoFish">
+<select name="" id="">
+    <option value="">One Fish</option>
+    <option value="" ng-selected="isTwoFish">Two Fish</option>
+</select>
+
+<a ng-href="{{myHref}}">动态生成的链接</a>
+<img ng-src="{{mySrc}}" alt="">
+</body>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+<script>
+var app = angular.module("myApp",[]);
+    app.controller('SelectController',['$scope','$timeout',function ($scope,$timeout) {
+        $timeout(function () {
+            $scope.myHref = "http://www.baidu.com";
+            $scope.mySrc = "https://www.google.com/images/srpr/logo11w.png";
+        },1000);
+    }]);
+</script>
+</html>

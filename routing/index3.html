@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>routing</title>
+	<script src="https://cdn.bootcss.com/angular.js/1.6.1/angular.js"></script>
+    <script src="https://cdn.bootcss.com/angular.js/1.6.1/angular-route.js"></script>
+    <script type="text/javascript">
+    angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));
+  </script>
+</head>
+<body ng-app="routingApp">
+	<h2>AngularJs routing Application</h2>
+	<ul>
+		<li><a href="/">Default Route</a></li>
+		<li><a href="/second">Second Route</a></li>
+		<li><a href="/otherwise">Non existent route</a></li>
+	</ul>
+	<div ng-view></div>
+</body>
+<script type="text/javascript">
+    angular.module('routingApp', ['ngRoute'])
+      .config(['$locationProvider','$routeProvider', function($locationProvider,$routeProvider) {
+        $routeProvider.when('/', {
+          template: '<h5>This is the default route</h5>'
+        })
+        .when('/second', {
+          template: '<h5>This is the second route</h5>'
+        })
+        .otherwise({redirectTo: '/'});
+        $locationProvider.html5Mode(true);
+      }]);
+  </script>
+</html>

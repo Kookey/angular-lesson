@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="http://cdn.bootcss.com/angular.js/1.6.1/angular.js"></script>
+	<script type="text/javascript" src="index.js"></script>
+	<script type="text/javascript" src="hero-detail.js"></script>
+	<title>component</title>
+</head>
+<body ng-app="heroApp">
+	<div ng-controller="HeroController as main">
+		<b>Hello</b><br>
+		<hero-detail hero="main.hero"></hero-detail>	
+	</div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-app="myApp">
+<div ng-controller="ParentController">
+{{1+2}}
+<div ng-controller="ChildController">
+    <a ng-click="sayHello()">点击我</a>
+</div>
+    {{person}}
+</div>
+</body>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+<script type="text/javascript" src="app.js"></script>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-app="myApp" ng-controller="myController">
+<div ng-bind="clock.now"></div>
+</body>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+<script type="text/javascript">
+    var app = angular.module('myApp',[]);
+    app.controller('myController',function ($scope) {
+        $scope.clock = {
+            now:new Date()
+        };
+        var update = function () {
+            $scope.clock.now = new Date();
+        }
+
+        setInterval(function () {
+            $scope.$apply(update);
+        },1000);
+
+        update();
+    });
+</script>
+
+</html>

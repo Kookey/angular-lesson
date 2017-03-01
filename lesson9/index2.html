@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+</head>
+<body>
+<div>{{someProperty}}</div>
+<button ng-click="action()">惦记我</button>
+</body>
+<script type="text/javascript">
+    var app = angular.module('myApp',[]);
+    app.run(function ($rootScope) {
+        $rootScope.someProperty = 'hello computer';
+
+        $rootScope.action = function () {
+            $rootScope.someProperty = 'human';
+        }
+    });
+</script>
+</html>

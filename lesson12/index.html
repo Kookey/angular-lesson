@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+</head>
+<body ng-app="myApp">
+<my-directive></my-directive>
+<div my-directive></div>
+<div class="my-directive"></div>
+</body>
+<script type="text/javascript">
+    var app = angular.module('myApp',[]);
+    app.directive('myDirective',function () {
+        return {
+            restrict:'AEC',
+            replace:true,
+            template:'<div>some stuff here</div>'
+        }
+    });
+</script>
+</html>

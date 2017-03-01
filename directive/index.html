@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+    <script src="app.js"></script>
+    <title>directive</title>
+</head>
+<body ng-app="myCards">
+<my-card my-title="'Ilfracombe'" my-pic="'http://teropa.info/ilfracombe.jpg'"
+my-content="Ilfracombe /ˈɪlfrəkuːm/ is a seaside resort and civil parish on the North Devon coast, England with a small harbour, surrounded by cliffs. The parish stretches along the coast from 'The Coastguard Cottages' in Hele Bay toward the east and 4 miles along The Torrs to Lee Bay toward the west. The resort is hilly and the highest point within the parish boundary is at 'Hore Down Gate', 2 miles inland and 860 feet (270 m) above sea level.">
+</my-card>
+</body>
+<script>
+    /**
+     * Created by wxl19 on 2017/1/4.
+     */
+    var app = angular.module('myCards',[])
+            .directive('myCard',[function () {
+                return {
+                    scope:{
+                        title:'=myTitle',
+                        pic:'=myPic',
+                        content:'@myContent'
+                    },
+                    templateUrl:'myCard'
+                };
+            }])
+</script>
+<script type="text/ng-template" id="myCard">
+    <article>
+        <img src="{{pic}}" class="pic" alt="">
+        <h2>{{title}}</h2>
+        {{content}}
+    </article>
+</script>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="CountController">
+<button ng-click="count = count + 1">
+    Increment
+</button>
+
+<button ng-click="decrement()">曾江</button>
+
+<code>{{count}}</code>
+</body>
+
+<script type="text/javascript">
+    angular.module('myApp',[])
+            .controller('CountController',['$scope',function ($scope) {
+                $scope.decrement = function () {
+                    $scope.count -= 1;
+                }
+            }])
+</script>
+</html>

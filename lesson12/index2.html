@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+</head>
+<body ng-app="myApp">
+<div ng-init = "someProperty='some data'">
+    Inside Div Two :{{aThirdProperty}}
+    <div ng-init="aThirdProperty = 'data for 3rd property'" ng-controller="SomeController">
+        Inside Div Three :{{aThirdProperty}}
+        <div ng-init="aFourthProperty">
+            Inside Div four {{aThirdProperty}}
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    var app = angular.module('myApp',[]);
+    app.controller('SomeController',['$scope',function ($scope) {
+
+    }]);
+</script>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div ng-controller="TemplateController">
+    <input type="text" ng-model="email" placeholder="Enter your email">
+    <textarea  id="" cols="30" rows="10" ng-model="emailBody"></textarea>
+    <pre>__previewText__</pre>
+</div>
+</body>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+<script type="text/javascript">
+
+    angular.module('emailParser',[]).config(['$interpolateProvider',function ($interpolateProvider) {
+        $interpolateProvider.startSymbol('__');
+        $interpolateProvider.endSymbol('__');
+    }]).factory('EmailParser',['$interpolate',function ($interpolate) {
+        return {
+            parse:function (text, context) {
+                var template = $interpolate(text);
+                return template(context);
+            }
+        };
+    }]);
+    var app = angular.module('myApp',['emailParser']);
+    app.controller('TemplateController',['$scope','EmailParser',function ($scope,EmailParser) {
+        $scope.email = "wxlhdm@qq.com";
+        $scope.emailBody = "Hello __to__,\n\nMy name is Ari too!";
+        $scope.$watch('emailBody',function (body) {
+            if(body){
+                $scope.previewText = EmailParser.parse(body,{to:$scope.email});
+            }
+        });
+    }]);
+</script>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+    <style type="text/css">
+        .odd{
+            background-color: aqua;
+        }
+        .even{
+            background-color: bisque;
+        }
+    </style>
+</head>
+<body ng-app="myApp">
+<ul ng-cloak ng-controller="RepeatController">
+    <li ng-repeat="person in persons" ng-class="{odd:!$odd,even:!$even}">
+        {{person.name}}'s age is {{person.age}}
+    </li>
+</ul>
+</body>
+
+<script type="text/javascript">
+    angular.module("myApp", [])
+            .controller('RepeatController', ['$scope', function ($scope) {
+                $scope.persons = [
+                    {name: 'Wangxl', age: 20},
+                    {name: 'Houdm', age: 20}
+                ];
+            }])
+</script>
+</html>

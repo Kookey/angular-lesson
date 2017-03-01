@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://cdn.bootcss.com/angular.js/1.6.1/angular.js"></script>
+</head>
+<body ng-app="myApp">
+<div ng-controller="MyController">
+    Date format:<input type="text" ng-model="format">
+    Current time is:<span my-current-time = "format"></span>
+</div>
+</body>
+
+<script type ="text/javascript">
+    var app = angular.module('myApp',[]);
+    app.controller('MyController', ['$scope', function($scope){
+        $scope.format = 'M/d/yy h:mm:ss a';
+    }]).directive('myCurrentTime',['$interval','dateFilter',function ($interval,dateFilter) {
+        function link(scope, element, attrs) {
+            var format,intervalId;
+            function updateTime() {
+                element.text(dateFilter(new Date(),format));
+            }
+            scope.$watch(attrs.myCurrentTime,function (value) {
+                format = value;
+                updateTime();
+            });
+            element.on('$distory',function () {
+                $interval.cancel(intervalId);
+            })
+            intervalId = $interval(function(){
+                updateTime();
+            },1000);
+
+        }
+        return {
+            link:link
+        };
+    }]);
+</script>
+</html>

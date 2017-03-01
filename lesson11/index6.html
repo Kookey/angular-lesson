@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+</head>
+<body ng-app="myApp">
+<div ng-controller="ChangeController as change">
+    <input type="text" ng-model="change.equation.x" ng-change="change.onChange()">
+    {{change.equation.output}}
+</div>
+</body>
+<script type="text/javascript">
+    var app = angular.module('myApp',[]);
+    app.controller('ChangeController',function () {
+        var self = this;
+        self.equation = {};
+        self.onChange = function () {
+            self.equation.output = self.equation.x *2;
+        }
+    });
+
+</script>
+</html>

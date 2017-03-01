@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+</head>
+<body>
+<div ng-controller="SomeController">
+    {{someBareValue}}
+    <button ng-click="someAction()">Parent</button>
+    <div ng-controller="ChildController">
+        {{someBareValue}}
+        <button ng-click="someAction()">Child</button>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    var app = angular.module('myApp',[]);
+    app.controller('SomeController',['$scope',function ($scope) {
+        $scope.someBareValue = 'hello computer';
+        $scope.someAction = function () {
+            $scope.someBareValue = 'hello human, from parent';
+        }
+    }]).controller('ChildController',['$scope',function ($scope) {
+        $scope.someAction = function () {
+            $scope.someBareValue = 'hello human, from child';
+        }
+    }]);
+</script>
+</html>

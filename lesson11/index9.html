@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+</head>
+<body ng-app="myApp">
+<div ng-controller="SelectController">
+    <label for="">城市</label>
+    <select name="" id="" ng-model="city" ng-options="city.name for city in cities">
+        <option value="">请选择城市</option>
+    </select>
+    <button ng-click="selectCity()">选择城市</button>
+    <b>{{city.name}}</b>
+    <hr>
+    <select name=""  ng-model="city2" ng-options="city2 for city2 in cities2">
+        <option value="">请选择城市</option>
+    </select>
+    <b>{{city2}}</b>
+    <hr>
+    <select name="" ng-options="item as item.label for item in items" ng-model="selected"></select>
+</div>
+</body>
+<script type="text/javascript">
+    angular.module('myApp',[])
+            .controller('SelectController',['$scope',function ($scope) {
+                $scope.cities = [
+                    {name:'上海'},
+                    {name:'北京'},
+                    {name:'杭州'},
+                    {name:'广州'},
+                    {name:'深圳'}
+                ];
+
+                $scope.cities2 = ['上海','北京','杭州','广州','深圳'
+                ];
+
+                $scope.items = [{
+                    id: 1,
+                    label: 'aLabel',
+                    subItem: { name: 'aSubItem' }
+                }, {
+                    id: 2,
+                    label: 'bLabel',
+                    subItem: { name: 'bSubItem' }
+                }];
+
+                $scope.selected = $scope.items[1];
+
+                $scope.selectCity = function () {
+                    $scope.city = $scope.cities[2];
+                }
+            }])
+</script>
+</html>

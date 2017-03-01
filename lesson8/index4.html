@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+</head>
+<body ng-app = 'myApp'>
+<p> We can access {{rootProperty}}</p>
+<div ng-controller="ParentController">
+    <p>We can access: {{rootProperty}} and {{parentProterty}}</p>
+    <div ng-controller="ChildController">
+        <p>We can access {{rootProperty}} and {{parentProterty}} and {{childProterty}}</p>
+        <p>{{fullSenceFromChild}}</p>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    var app = angular.module('myApp',[]);
+    app.run(function ($rootScope) {
+        // 使用.run访问$rootScope
+        $rootScope.rootProperty = 'root scope';
+    }).controller('ParentController',['$scope',function ($scope) {
+        $scope.parentProterty = 'parent scope';
+    }]).controller('ChildController',['$scope',function ($scope) {
+        $scope.childProterty = 'child scope';
+        $scope.fullSenceFromChild = 'Same $scope: We can access:'+
+                        $scope.rootProperty + ' and ' +
+                        $scope.parentProterty + ' and ' +
+                        $scope.childProterty;
+    }]);
+</script>
+</html>

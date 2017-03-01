@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>emit,broadcast demo</title>
+	<script type="text/javascript" src="http://cdn.bootcss.com/angular.js/1.6.2/angular.js"></script>
+</head>
+<body ng-app="myApp">
+	<div>
+		<div ng-controller="parentCtrl">
+			<div ng-controller="currentCtrl">
+				<p ng-click="doClick()">Click</p>
+				<div ng-controller="childCtrl"></div>
+			</div>
+			<div></div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	angular.module('myApp', []).
+	controller('parentCtrl', ['$scope',function($scope){
+		$scope.$on('child',function(event,data){
+			console.log(data);
+		});
+		$scope.$on('parent',function(event,data){
+			console.log(data);
+			console.log(event);
+		});
+	}])
+	.controller('currentCtrl', ['$scope',function($scope){
+		$scope.doClick = function(){
+			$scope.$broadcast('child', 'child');  
+        	$scope.$emit('parent', 'parent');  
+		}
+	}])
+	.controller('childCtrl', ['$scope',function($scope){
+		$scope.$on('child',function(event,data){
+			console.log(data);
+		});
+		$scope.$on('parent',function(event,data){
+			console.log(data);
+		});
+	}])
+</script>
+</html>

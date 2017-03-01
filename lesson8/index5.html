@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+</head>
+<body>
+<my-directive  my-url="http://www.baidu.com" my-link-text="惦记我"></my-directive>
+</body>
+<script type="text/javascript">
+var app = angular.module('myApp',[]);
+    app.directive('myDirective',function () {
+        return {
+            template:'<a href="{{myUrl}}">{{myLinkText}}</a>'
+        };
+    });
+</script>
+</html>

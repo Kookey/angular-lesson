@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-app="myApp" ng-controller="MyController">
+<div>{{before}}</div>
+<div>{{after}}</div>
+
+<form action="?t=32443423423423">
+<input type="submit" onclick="return doSubmit()"/>
+    <button type="button">提交</button>
+</form>
+<div>{{13432.534565|number:2}}</div>
+<div>{{ 'ginger loves dog treats' | lowercase | capitalize }}</div>
+</body>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+<script type="text/javascript">
+    function doSubmit() {
+        alert(111);
+        return false;
+    }
+
+
+var app = angular.module('myApp',[]);
+    app.controller('MyController',['$scope','$filter',function ($scope, $filter) {
+        $scope.before = 'Hello';
+        $scope.after = $filter('lowercase')($scope.before);
+    }]).filter('capitalize',function () {
+        return function (input) {
+            if (input){
+                return input[0].toUpperCase() + input.slice(1);
+            }
+        }
+    });
+</script>
+</html>

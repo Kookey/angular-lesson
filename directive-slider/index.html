@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>directive slider </title>
+	<link rel="stylesheet" href="//cdn.bootcss.com/noUiSlider/9.2.0/nouislider.css"></link>
+	<style type="text/css">	
+		.slider {
+			display: block;
+			height: 20px;
+			margin: 20px;
+		}
+	</style>
+</head>
+<body ng-app="sliderApp">
+	<div ng-controller="MainCtrl as mainCtrl">
+		<div>
+			The current value of the slider is {{mainCtrl.selectedValue}}
+		</div>
+
+		<no-ui-slider class="slider" ng-model="mainCtrl.selectedValue" range-min="500" range-max="5000"></no-ui-slider>
+
+		<div>
+			<input type="number" ng-model="mainCtrl.textValue" min="500" max="5000" placeholder="Set a value">
+			<button ng-click="mainCtrl.setSelectedValue()">Set slider value</button>
+		</div>
+	</div>
+	<script type="text/javascript" src="//cdn.bootcss.com/jquery/1.12.1/jquery.js"></script>
+	<script type="text/javascript" src="//cdn.bootcss.com/noUiSlider/9.2.0/nouislider.js"></script>
+	<script type="text/javascript" src="//cdn.bootcss.com/angular.js/1.6.1/angular.min.js"></script>
+	<script type="text/javascript" src="app.js"></script>
+	<script type="text/javascript" src="noui-slider.js"></script>
+</body>
+</html>

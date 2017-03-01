@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-app="myApp">
+<div ng-controller="FatherController">
+    {{someObj.someProperty}}
+    <button ng-click="someAction()">父按钮</button>
+    <div ng-controller="ChildController">
+        {{someObj.someProperty}}
+        <button ng-click="someAction()">子按钮</button>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+<script type="text/javascript">
+    angular.module('myApp',[])
+            .controller('FatherController',['$scope',function ($scope) {
+                $scope.someObj = {
+                    someProperty:'Hello Father'
+                };
+                $scope.someAction = function () {
+                    $scope.someObj.someProperty = "edit Hello Father";
+                }
+            }])
+            .controller('ChildController',['$scope',function ($scope) {
+                $scope.someAction = function () {
+                    $scope.someObj.someProperty = "edit Hello Child";
+                }
+            }]);
+</script>
+
+</html>

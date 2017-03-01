@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>directive-compile</title>
+</head>
+<body ng-app="dynamicFormApp">
+	<div ng-controller="MainCtrl as mainCtrl">
+		<form novalidate="" name="mainForm">
+			<form-element
+				type="text"
+				name="uname"
+				bind-to="mainCtrl.username"
+				label="Username"
+				required
+				ng-minlength="5">
+				<validation key="required">
+					Please enter a usernam
+				</validation>
+			</form-element>
+			Username is {{mainCtrl.username}}
+
+			<form-element
+				type="password"
+				name="pwd"
+				bind-to="mainCtrl.password"
+				label="Password"
+				required
+				ng-pattern="/^[a-zA-Z0-9]+$/">
+				<validation key="required">
+					Please enter your password
+				</validation>
+				<validation key="pattern">
+					Password must on be a alphanumeric characters
+				</validation>
+			</form-element>
+			Password is {{mainCtrl.password}}
+			<button>Submit</button>
+		</form>
+	</div>
+	<script type="text/javascript" src="http://cdn.bootcss.com/angular.js/1.6.1/angular.min.js"></script>
+	<script type="text/javascript" src="app.js"></script>
+	<script type="text/javascript" src="directive.js"></script>
+	`
+</body>
+</html>

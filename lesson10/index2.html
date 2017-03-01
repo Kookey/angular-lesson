@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-app="myApp">
+<textarea name="" id="" cols="30" rows="10" ng-disabled="isDisabled">测啊发的发射点发11111111111</textarea>
+</body>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+<script>
+    angular.module('myApp',[]).run(function ($rootScope, $timeout) {
+        $rootScope.isDisabled = false;
+        $timeout(function () {
+            $rootScope.isDisabled = true;
+        },1000);
+    });
+</script>
+</html>

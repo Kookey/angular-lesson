@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="http://cdn.bootcss.com/angular.js/1.6.1/angular.js"></script>
+</head>
+<body ng-app="myApp">
+	<div ng-controller="MyController">
+		<my-dialog>Check out the contents {{name}}</my-dialog>
+	</div>
+</body>
+<script type="text/javascript">
+	/**
+	* myApp Module
+	*
+	* Description
+	*/
+	angular.module('myApp', [])
+	.controller('MyController', ['$scope', function($scope){
+				$scope.name="Wang Xingling";
+	}]).directive('myDialog', ['$log', function($log){
+		return {
+			restrict:'E',
+			transclude:true,
+			scope:{},
+			templateUrl:'my-dialog.html',
+			link:function(scope){
+				$log.info(scope);
+				scope.name='Copy WangXingling';
+			}
+		};
+	}]);
+</script>
+</html>

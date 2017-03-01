@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+</head>
+<body ng-app>
+<div ng-init="greeting='Hello Computer';person='WangXingling'">
+    {{greeting}}
+    {{person}}
+
+    <h2 ng-bind-template="{{greeting}} {{person}}"></h2>
+
+    <h1 ng-bind="greeting"></h1>
+    <h1 ng-bind="person"></h1>
+</div>
+</body>
+</html>

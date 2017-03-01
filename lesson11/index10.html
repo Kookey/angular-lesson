@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="SubmitController">
+<form ng-submit="doSubmit()">
+    <input type="text" ng-model="person.name">
+    <input type="submit">
+</form>
+<code>people={{people}}</code>
+<ul ng-repeat="(index,object) in people">
+    <li>{{object.name}}</li>
+</ul>
+</body>
+<script type="text/javascript">
+    angular.module('myApp', [])
+            .controller('SubmitController', ['$scope', function ($scope) {
+                $scope.person = {
+                    name: null
+                };
+                $scope.people = [];
+                $scope.doSubmit = function () {
+                    if ($scope.person.name) {
+                        $scope.people.push({
+                            name: $scope.person.name
+                        });
+                        $scope.person.name = '';
+                    }
+                    return false;
+                }
+            }]);
+</script>
+</html>

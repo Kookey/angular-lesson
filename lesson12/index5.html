@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+</head>
+<body ng-app="myApp">
+    <div ng-controller="MainController" ng-init="myProperty = 'wow ,its cool'">
+        {{myProperty}}
+        <div my-directive>
+        </div>
+        <div my-some-directive>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    var app = angular.module('myApp',[]);
+    app.controller('MainController',['$scope',function ($scope) {
+//        $scope.myProperty = "wow ,it's cool";
+    }]).directive('myDirective',function () {
+        return {
+            restrict:'AE',
+            scope:{},
+            priority: 100,
+            template:'<div>Inside directive {{myProperty}}</div>'
+        };
+    }).directive('mySomeDirective',function () {
+        return {
+            restrict:'AE',
+            scope:true,
+            template:'<div>Inside mySomeDirective {{myProperty}}</div>'
+        };
+    });
+</script>
+</html>

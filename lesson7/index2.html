@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- Compressed CSS -->
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/1.12.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/css/foundation.min.css">
+    <!-- Compressed JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/js/foundation.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+    <script type="text/javascript" src="//cdn.bootcss.com/angular-messages/1.5.8/angular-messages.js"></script>
+</head>
+<body ng-app="formApp" ng-controller="FormController">
+<form  name="signup_form" novalidate ng-submit="signUpForm()">
+    <fieldset>
+        <legend>SignUp</legend>
+        <div class="row">
+            <div class="large-12 columns">
+                <label>Your name</label>
+                <input type="text" placeholder="Name" name="name" ng-model="signup.name" ng-minlength="3"
+                       ng-maxlength="20" required ng-focus>
+                <div class="error" ng-messages="signup_form.name.$error">
+                    <small ng-message="required">
+                        Your name is required
+                    </small>
+                    <small ng-message="minlength">
+                        Your name is required to be at least 3 characters
+                    </small>
+                    <small ng-message="maxlength">
+                        Your name cannot to be longer than 20 characters
+                    </small>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <label>Your email</label>
+                <input type="email"
+                       placeholder="Email"
+                       name="email"
+                       ng-model="signup.email"
+                       ng-minlength="3" ng-maxlength="20" required />
+                <div class="error" ng-messages="signup_form.email.$error" ng-messages-multiple>
+                    <small ng-message="required">
+                        Your email is required.
+                    </small>
+                    <small ng-message="minlength">
+                        Your email is required to be at least 3 characters
+                    </small>
+                    <small ng-message="email">
+                        That is not a valid email. Please input a valid email.
+                    </small>
+                    <small ng-message="maxlength">
+                        Your email cannot be longer than 20 characters
+                    </small>
+                </div>
+            </div>
+            <div class="large-12 columns">
+                <label>Username</label>
+                <input type="text"
+                       placeholder="Desired username"
+                       name="username"
+                       ng-model="signup.username"
+                       ng-minlength="3"
+                       ng-maxlength="20"
+                       ensure-unique="username" required/>
+                <div class="error" ng-messages="signup_form.username.$error">
+                    <div ng-messages-include="template.html"></div>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" ng-disabled="signup_form.$invalid" class="button radius">Submit</button>
+    </fieldset>
+</form>
+</body>
+<script type="text/javascript">
+    var app = angular.module("formApp", ['ngMessages']);
+    app.controller('FormController', ['$scope', function ($scope) {
+        $scope.submitted = false;
+        $scope.signUpForm = function () {
+            if ($scope.signup_form.$valid) {
+// 正常提交
+            } else {
+                $scope.signup_form.submitted = false;
+            }
+        }
+    }]).directive('ngFocus',[function () {
+        var FOCUS_CLASS = "ng-focused";
+        return {
+            restrict : 'A',
+            require:'ngModel',
+            link:function (scope, element, attrs, ctrl) {
+                ctrl.$focused = false;
+                element.bind('focus',function (evt) {
+                    element.addClass(FOCUS_CLASS);
+                    scope.$apply(function () {
+                        ctrl.$focused = true;
+                    });
+                }).bind('blur',function (evt) {
+                    element.removeClass(FOCUS_CLASS);
+                    scope.$apply(function () {
+                        ctrl.$focused = false;
+                    });
+                })
+            }
+        };
+    }]);
+</script>
+</html>

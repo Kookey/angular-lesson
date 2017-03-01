@@ -1,0 +1,9 @@
+my-card {
+    display: block;
+    border: 1px solid #555;
+    padding: 5px;
+}
+my-card .pic {
+    float: right;
+    max-width: 100px;
+}

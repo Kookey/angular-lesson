@@ -5,6 +5,7 @@ var app = angular.module("myApp",[]);
 
 app.controller("myContrl",function ($scope) {
     $scope.data = {fName:'',lName:'',passw1:'',passw2:''};
+    $scope.address = "11111111111";
 
     $scope.users = [
         {id:1, fName:'Hege',lName:"Pege" },
@@ -34,16 +35,21 @@ app.controller("myContrl",function ($scope) {
         }
     }
 
-    $scope.$watch('data.passw1',function () {
+    $scope.$watch('data.passw1',function (newVal,oldVal,scope) {
+        // scope.address = "123456789";
+        console.dir(scope);
         $scope.test();
     });
-    $scope.$watch('data.passw2',function () {
+    $scope.$watch('data.passw2',function (newVal,oldVal,scope) {
+        console.dir(scope);
         $scope.test();
     });
-    $scope.$watch('data.fName',function () {
+    $scope.$watch('data.fName',function (newVal,oldVal,scope) {
+        console.dir(scope);
         $scope.test();
     });
-    $scope.$watch('data.lName',function () {
+    $scope.$watch('data.lName',function (newVal,oldVal,scope) {
+        console.dir(scope);
         $scope.test();
     });
 

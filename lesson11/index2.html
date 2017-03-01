@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-app>
+<input ng-model="person.name" type="text">
+<div ng-switch on="person.name">
+    <p ng-switch-default> And the winner is </p>
+    <h1 ng-switch-when="Aial">{{person.name}}</h1>
+</div>
+</body>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+</html>
